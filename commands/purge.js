@@ -6,7 +6,7 @@ module.exports = {
   aliases: [],
   async execute(message, args) {
     try {
-      if (!args[0]) {
+      if (!args[0] || isNaN(args[0])) {
         const logMessage = new Discord.RichEmbed()
           .setColor(0x00e6e6)
           .setDescription("You forgot to tell me how many messages I should purge. For example, use ?purge 10 - I can purge as many as 99 messages at one time")
