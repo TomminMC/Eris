@@ -24,28 +24,19 @@ module.exports = {
         let allTriggers = reacts.triggers
         let timeUsed = 0
         let timeUsedMostRecent = 0
+
         function walk(allTriggers) {
           for (var key in allTriggers) {
             if (allTriggers.hasOwnProperty(key)) {
               let val = allTriggers[key];
-
-              console.log("Last Triggered" + val["lastMessage"]["createdAt"] + "\n\n")
               timeUsed = moment(val["lastMessage"]["createdAt"])
-
-              console.log("Time Used Most Recent:" + timeUsedMostRecent)
-
-              if (timeUsedMostRecent == 0){
+              if (timeUsedMostRecent == 0) {
                 timeUsedMostRecent = timeUsed
-              } else{
-                if (timeUsed > timeUsedMostRecent){
-                    timeUsedMostRecent = timeUsed
+              } else {
+                if (timeUsed > timeUsedMostRecent) {
+                  timeUsedMostRecent = timeUsed
                 }
               }
-
-
-
-
-
             }
           }
         }
