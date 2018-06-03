@@ -8,7 +8,7 @@ module.exports = {
     try {
       if (!args[0]) {
         const logMessage = new Discord.RichEmbed()
-          .setColor(0x00e6e6)
+          .setColor(message.client.eris.config.responseColors.errorResponse)
           .setDescription("You forgot to enter the roll requirements.. Try again with ?roll 2d20")
         message.channel.send(logMessage);
       } else {
@@ -19,7 +19,7 @@ module.exports = {
 
         if (!valid) {
           const embed = new Discord.RichEmbed()
-            .setColor(0xFF0000)
+            .setColor(message.client.eris.config.responseColors.errorResponse)
             .addField("Roll Requirements Not Valid", RollRequirements)
             .addField("Try Again With Something Like", "2d6 or 4d20")
           message.channel.send({
@@ -28,7 +28,7 @@ module.exports = {
         } else {
           let RollValue = roll.roll(RollRequirements);
           const embed = new Discord.RichEmbed()
-            .setColor(0x00e6e6)
+            .setColor(message.client.eris.config.responseColors.positiveResponse)
             .addField("Roll Breakdown:", RollValue.rolled)
             .addField("Roll Total: ", "🎲 " + RollValue.result)
           message.channel.send({
@@ -40,7 +40,7 @@ module.exports = {
     } catch (e) {
       let logMessage = new Discord.RichEmbed()
         .setTitle("Can't Roll Dice")
-        .setColor(0xAA00AA)
+        .setColor(message.client.eris.config.responseColors.errorResponse)
         .setDescription(e)
       message.channel.send(message.client.eris.getRandomMessage('8ballCommand', 'error'), logMessage)
     }
